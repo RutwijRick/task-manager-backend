@@ -49,7 +49,10 @@ const init = async () => {
     // await createDatabaseIfNotExists();
     await sequelize.sync(); 
     await seedDatabase();
-    server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log(`Open Swagger: http://localhost:5000/api-docs`);
+    });
   } catch (err) {
     console.error('Startup Error:', err);
   }

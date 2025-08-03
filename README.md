@@ -21,7 +21,6 @@ This is a scalable backend for a Trello-like task manager.
 ```bash
 git clone https://github.com/RutwijRick/task-manager-backend.git task-manager-backend
 cd task-manager-backend
-cp .env.example .env
 npm install
 npm run dev
 ```
