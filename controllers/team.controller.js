@@ -1,5 +1,6 @@
 import Team from "../models/Team.js";
 
+// create a team
 export const createTeam = async (req, res) => {
     const { name } = req.body;
 
@@ -13,6 +14,7 @@ export const createTeam = async (req, res) => {
     }
 };
 
+// fetch all teams
 export const getTeams = async (req, res) => {
     try {
         const teams = await Team.findAll();

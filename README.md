@@ -1,14 +1,14 @@
 This is a scalable backend for a Trello-like task manager.
 
 ## Features
-- User Authentication with JWT
+- User Authentication with JWT.
 - Boards, Tasks CRUD.
 - Comments, Teams.
-- Real-time updates via WebSocket (Socket.IO)
-- Swagger API Docs (OpenAPI 3)
-- Top 3 active users analytics
-- Role-based board access
-- Sequelize with MySQL
+- Real-time updates via WebSocket (Socket.IO).
+- Swagger API Docs (OpenAPI 3).
+- Top 3 active users analytics.
+- Role-based board access.
+- Sequelize with MySQL.
 
 ## Tech Stack
 - Node.js + Express
@@ -19,7 +19,7 @@ This is a scalable backend for a Trello-like task manager.
 
 ## Setup
 ```bash
-git clone <repo-url>
+git clone https://github.com/RutwijRick/task-manager-backend.git task-manager-backend
 cd task-manager-backend
 cp .env.example .env
 npm install
@@ -57,12 +57,34 @@ io('http://localhost:5000', { query: { userId } })
 ```
 */
 
+## How can we scale this for 10M+ users
+  - Architecture
+    - Move to microservices: auth, boards, tasks, comments, notifications.
+    - Use Redis Pub/Sub for WebSocket scalability.
+    - Load balancer + Node.js clusters + PM2 for horizontal scaling.
+
+  - Database
+    - Read/Write DB separation.
+    - Use MySQL read replicas and sharding by boardId for scale.
+
+  - Caching
+    - Redis to cache frequent reads (e.g., board metadata, user sessions).
+    - Use CDN for static files and API Gateway rate limiting.
+
+  - Queueing
+    - Background jobs via Bull (Redis) for sending emails, analytics.
+
+  - Monitoring
+    - Prometheus + Grafana + Elastic Stack.
+    - Alerts on error rates, DB bottlenecks, or socket disconnections.
+
+
 ## Assumptions and other details
 - I have assumed here, each Board will have Board Members. Only these members can modify Tasks and Board details (checked via middleware).
 - Each Task will be assigned to teams.
 - Go to http://localhost:5000/api-docs to check all REST APIs.
 - WebSocket working can be checked via socket-test.html file.
-- Docker was not working on my PC as my CPU does not allow virtualization. I still added Docker files, not tested. 
+- Tried to Dockerize but Docker was not working on my PC as my CPU does not allow virtualization. I still added Docker files, not able to test them though. 
 
 ## A general flow that I had followed.
   - Open http://localhost:5000/api-docs then register and login via these credentials.
@@ -89,3 +111,5 @@ io('http://localhost:5000', { query: { userId } })
   - Comments
     - Add Comments on tasks.
     - Get Comments: by taskId.
+
+## Table Schemas and Relations can be read in ERD.txt file

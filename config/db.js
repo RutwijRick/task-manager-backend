@@ -4,6 +4,7 @@ dotenv.config();
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
+// Tried to create a database automatically but Docker was not working on my PC
 // const sequelizeRoot = new Sequelize('', DB_USER, DB_PASSWORD, {
 //     host: DB_HOST,
 //     dialect: 'mysql',

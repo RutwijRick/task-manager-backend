@@ -1,5 +1,6 @@
 import Board from '../models/Board.js';
 
+// Boards created with board member also added
 export const createBoard = async (req, res) => {
     const { name } = req.body;
 
@@ -18,6 +19,7 @@ export const createBoard = async (req, res) => {
     }
 };
 
+// Get all Boards
 export const getBoards = async (req, res) => {
     try {
         const boards = await Board.findAll();
@@ -27,6 +29,7 @@ export const getBoards = async (req, res) => {
     }
 };
 
+// update board details
 export const updateBoard = async (req, res) => {
   try {
     const board = await Board.findByPk(req.params.id);
@@ -42,6 +45,7 @@ export const updateBoard = async (req, res) => {
   }
 };
 
+// Delete the board
 export const deleteBoard = async (req, res) => {
     try {
         const board = await Board.findByPk(req.params.id);

@@ -1,5 +1,6 @@
 import Task from '../models/Task.js';
 
+// Create a task
 export const createTask = async (req, res) => {
     const { title, description, boardId, teamId } = req.body;
     try {
@@ -11,6 +12,7 @@ export const createTask = async (req, res) => {
     }
 };
 
+// get task by status and teamId and pagination included
 export const getTasks = async (req, res) => {
     const { status, teamId, page = 1, limit = 10 } = req.query;
     const where = {};
@@ -26,6 +28,7 @@ export const getTasks = async (req, res) => {
     }
 };
 
+// Get all Tasks in a board
 export const getAllTasksByBoardId = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const { boardId } = req.params;
@@ -54,6 +57,7 @@ export const getAllTasksByBoardId = async (req, res) => {
     }
 };
 
+// update title and description of a task
 export const updateTask = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);
@@ -70,6 +74,7 @@ export const updateTask = async (req, res) => {
     }
 };
 
+// Delete the task
 export const deleteTask = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);
@@ -82,6 +87,7 @@ export const deleteTask = async (req, res) => {
     }
 };
 
+// Assign task to a team
 export const assignTaskToTeam = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);
@@ -98,6 +104,7 @@ export const assignTaskToTeam = async (req, res) => {
     }
 }
 
+// change task status
 export const changeTaskStatus = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);

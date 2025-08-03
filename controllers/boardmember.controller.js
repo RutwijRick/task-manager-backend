@@ -1,5 +1,6 @@
 import BoardMember from '../models/BoardMember.js';
 
+// Board member add
 export const addBoardMember = async (req, res) => {
     const { userId, boardId } = req.body;
 

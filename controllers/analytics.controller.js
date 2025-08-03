@@ -2,6 +2,7 @@ import Task from '../models/Task.js';
 import Comment from '../models/Comment.js';
 import { Op } from 'sequelize';
 
+// Get a list of top active users based on activity (Boards and Comment activity)
 export const getTopActiveUsers = async (req, res) => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
