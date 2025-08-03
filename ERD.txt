@@ -1,0 +1,46 @@
+Entity Relationship Diagram (ERD)
+==================================
+
+1. Users
+   - id (PK)
+   - email
+   - password
+
+2. Boards
+   - id (PK)
+   - name
+   - createdBy (FK → Users.id)
+
+3. BoardMembers
+   - id (PK)
+   - userId (FK → Users.id)
+   - boardId (FK → Boards.id)
+
+4. Tasks
+   - id (PK)
+   - title
+   - description
+   - status
+   - assigneeId (FK → Users.id)
+   - boardId (FK → Boards.id)
+   - teamId (FK → Teams.id)
+   - createdBy (FK → Users.id)
+
+5. Comments
+   - id (PK)
+   - text
+   - taskId (FK → Tasks.id)
+   - commentedBy (FK → Users.id)
+
+6. Teams
+   - id (PK)
+   - name
+
+Relationships
+-------------
+- A User can create many Boards.
+- A Board can have many BoardMembers (Users).
+- A Board can have many Tasks.
+- A Task belongs to one Board and one Team.
+- A Task can have many Comments.
+- A Comment is made by a User on a Task.

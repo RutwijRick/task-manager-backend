@@ -1,0 +1,19 @@
+Architecture
+    - Move to microservices: auth, boards, tasks, comments, notifications.
+    - Use Redis Pub/Sub for WebSocket scalability.
+    - Load balancer + Node.js clusters + PM2 for horizontal scaling.
+
+Database
+    - Read/Write DB separation.
+    - Use MySQL read replicas and sharding by boardId for scale.
+
+Caching
+    - Redis to cache frequent reads (e.g., board metadata, user sessions).
+    - Use CDN for static files and API Gateway rate limiting.
+
+Queueing
+    - Background jobs via Bull (Redis) for sending emails, analytics.
+
+Monitoring
+    - Prometheus + Grafana + Elastic Stack.
+    - Alerts on error rates, DB bottlenecks, or socket disconnections.

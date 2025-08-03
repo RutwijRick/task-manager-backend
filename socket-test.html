@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Test</title>
+</head>
+<body>
+  <h2>Task Manager Socket Test</h2>
+  <input id="userId" placeholder="Enter userId" />
+  <button onclick="connect()">Connect</button>
+  <pre id="log"></pre>
+
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script>
+    let socket;
+    function log(msg) {
+      document.getElementById('log').textContent += `\n${msg}`;
+    }
+
+    function connect() {
+      const userId = document.getElementById('userId').value;
+      socket = io('http://localhost:5000', { query: { userId } });
+
+      socket.on('connect', () => log('🔌 Connected'));
+      socket.on('disconnect', () => log('❌ Disconnected'));
+
+      socket.on('task-updated', data => log('📌 Task updated: ' + JSON.stringify(data)));
+      socket.on('task-deleted', data => log('🗑️ Task deleted: ' + JSON.stringify(data)));
+      socket.on('task-created', data => log('✅ Task created: ' + JSON.stringify(data)));
+    }
+  </script>
+</body>
+</html>
