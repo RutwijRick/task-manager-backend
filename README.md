@@ -46,6 +46,7 @@ Client should connect using userId:
 ```js
 io('http://localhost:5000', { query: { userId } })
 ```
+Simple GUI: Open socket-test.html file.
 
 ## Default User (Seeded)
 ```json
